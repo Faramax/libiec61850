@@ -29,7 +29,7 @@ Unsigned32_constraint(asn_TYPE_descriptor_t *td, const void *sptr,
 		return -1;
 	}
 	
-	if((value >= 0 && value <= 4294967295)) {
+   if((value >= 0 && value <= UINT32_MAX)) {
 		/* Constraint check succeeded */
 		return 0;
 	} else {
