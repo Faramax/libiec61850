@@ -32,10 +32,6 @@ endif()
 
 endif(WIN32)
 
-include_directories(
-    ${CMAKE_CURRENT_LIST_DIR}/inc
-)
-
 set (libhal_linux_SRCS
  ${CMAKE_CURRENT_LIST_DIR}/socket/linux/socket_linux.c
  ${CMAKE_CURRENT_LIST_DIR}/ethernet/linux/ethernet_linux.c
@@ -131,6 +127,14 @@ endif(WITH_MBEDTLS)
 add_library (hal STATIC ${libhal_SRCS})
 
 add_library (hal-shared STATIC ${libhal_SRCS})
+
+target_include_directories(hal PUBLIC
+    ${CMAKE_CURRENT_LIST_DIR}/inc
+)
+
+target_include_directories(hal-shared PUBLIC
+    ${CMAKE_CURRENT_LIST_DIR}/inc
+)
 
 SET_TARGET_PROPERTIES(hal-shared PROPERTIES
   COMPILE_FLAGS "-fPIC"

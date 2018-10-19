@@ -60,7 +60,7 @@ option(DEBUG_SV_SUBSCRIBER "Enable Sampled Values subscriber debugging" ${DEBUG}
 option(DEBUG_SV_PUBLISHER "Enable Sampled Values publisher debugging" ${DEBUG})
 option(DEBUG_HAL_ETHERNET "Enable Ethernet HAL printf debugging" ${DEBUG})
 
-include_directories(
+set(INCLUDES
     ${CMAKE_CURRENT_BINARY_DIR}/config
     ${CMAKE_CURRENT_LIST_DIR}/src/common/inc
     ${CMAKE_CURRENT_LIST_DIR}/src/goose
@@ -73,6 +73,8 @@ include_directories(
     ${CMAKE_CURRENT_LIST_DIR}/src/mms/iso_mms/asn1c
     ${CMAKE_CURRENT_LIST_DIR}/src/logging
 )
+include_directories(${INCLUDES})
+set (IEC61850_INCLUDE_DIRS ${INCLUDES} PARENT_SCOPE)
 
 set(API_HEADERS
     hal/inc/hal_time.h
